@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Document</title>
+      <style>
+#show_result{
+      display:flex;
+      flex-wrap:wrap;
+}
+.container{
+      width:19vw;
+      height:400px;
+      position: relative;
+}
+.image_of_city{
+      width:100%;
+      height:100%;
+      
+}
+@media (max-width:1000px)
+{
+      .container{
+      width:32vw;}
+}
+@media (max-width:800px)
+{
+      .container{
+      width:48vw;}
+}
+@media (max-width:500px)
+{
+      .container{
+      width:100vw;}
+}
+.image_description{
+      width:100%;
+      height:0%;
+      bottom:0;
+      z-index:2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: absolute;
+      color: rgb(255, 255, 255);
+      background-color: rgba(55, 53, 53, 0.662);
+      font-size: 20px;
+      visibility: hidden;
+      transition:0.5s;
+      padding: 5px;
+      box-sizing: border-box;
+}
+.container:hover .image_description{
+height:50%;
+visibility: visible;
+}
+#show_more{
+      position: absolute;
+      width:140px;
+      height:45px;
+      left:50%;
+      transform: translateX(-50%);
+}
+</style>
+</head>
+<body>
+
+      <input placeholder="enter" id="cityname">
+      <button id="search_btn">search</button>
+      <div id="show_result"></div>
+      <button id="show_more"> show more</button>
+
+
+<script>
+
+
+
+
+
+        let options1 = {
+    method: 'GET',
+    headers: { 'x-api-key': 'Z2xmcH9EdzS/9TvmuJufTQ==WmSclLIKPnayUfWN' }
+  }
+  const url1='https://api.api-ninjas.com/v1/quotes?category=environmental'
+//   fetch(url1,options1)
+//         .then(res => res.json()) // parse response as JSON
+//         .then(data => {
+//           console.log(data)
+//         })
+//         .catch(err => {
+//             console.log(`error ${err}`)
+//         }); 
+
+async function getquote()
+{const response= await fetch(url1,options1);
+const data =await response.json();
+console.log(data['quote']);
+
+
+data.forEach((element) => {
+      console.log(element.quote);
+});
+}
+getquote();
+
+
+
+</script>
+</body>
+</html>
